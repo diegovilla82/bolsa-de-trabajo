@@ -12,6 +12,15 @@ use Caffeinated\Shinobi\Models\Permission;
 class RoleController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -25,9 +34,9 @@ class RoleController extends Controller
         //$valor = auth()->roles()->hasRole('admin');//->roles;//->hasRole('mod');//->hasPermissionTo('roles.index');// auth()->roles()->hasPermissionTo('posts.index');//auth()->roles()->hasRole('admin');
        // return $valor;
         //dd($valor);
-        
+
         return view('admin.roles.index', compact('roles'));
-        
+
     }
 
     /**
@@ -55,7 +64,7 @@ class RoleController extends Controller
         $role = Role::create($request->all());
 
         $role->permissions()->sync($request->get('permissions'));
-        
+
         return redirect()->route('roles.index')->with('info', 'El role se creo con exito!');
     }
 
@@ -99,7 +108,7 @@ class RoleController extends Controller
         $role = Role::find($id);
 
         $role->update($request->all());
-        
+
         $role->permissions()->sync($request->get('permissions'));
 
         return redirect()->route('roles.edit', $role->id)

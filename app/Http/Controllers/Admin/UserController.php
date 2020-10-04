@@ -11,6 +11,15 @@ use Caffeinated\Shinobi\Models\Role;
 class UserController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -24,9 +33,9 @@ class UserController extends Controller
         //$valor = auth()->user()->hasRole('admin');//->roles;//->hasRole('mod');//->hasPermissionTo('users.index');// auth()->user()->hasPermissionTo('posts.index');//auth()->user()->hasRole('admin');
        // return $valor;
         //dd($valor);
-        
+
         return view('admin.user.index', compact('users'));
-        
+
     }
 
     /**
@@ -89,7 +98,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         $user->update($request->all());
-        
+
         $user->roles()->sync($request->get('roles'));
 
         return redirect()->route('users.edit', $user->id)

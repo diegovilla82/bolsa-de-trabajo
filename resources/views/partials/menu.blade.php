@@ -29,9 +29,9 @@
                                 </li>
                             @endif
                         @else
-                            @can('personas.index')
-                                    <li class="nav-item {{ request()->is('personas')? 'active':'' }}">
-                                        <a class="nav-link {{ request()->is('personas')? 'btn btn-outline-success':'' }}" href="{{ route('personas.index') }}">Personas</a>
+                                @can('personas.index')
+                                    <li class="nav-item {{ request()->is('admin/personas')? 'active':'' }}">
+                                        <a class="nav-link {{ request()->is('admin/personas')? 'btn btn-outline-success':'' }}" href="{{ route('personas.index') }}">Contratistas</a>
                                     </li>
                                 @endcan
                                 @can('users.index')

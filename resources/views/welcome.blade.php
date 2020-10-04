@@ -68,18 +68,26 @@
  $(document).ready( function () {
 
     $('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var nombrecompleto = button.data('nombrecompleto') // Extract info from data-* attributes
-    var cuil = button.data('cuil') // Extract info from data-* attributes
-    var telefono = button.data('telefono') // Extract info from data-* attributes
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var nombrecompleto = button.data('nombrecompleto') // Extract info from data-* attributes
+            var cuil = button.data('cuil') // Extract info from data-* attributes
+            var telefono = button.data('telefono') // Extract info from data-* attributes
+            var imagen = button.data('imagen')
 
+            //console.log('llega');
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.card-title').text( nombrecompleto)
+            modal.find('.card-text').text('CUIL: ' + cuil )
 
-    console.log('llega');
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
-    modal.find('.card-title').text( nombrecompleto)
-    modal.find('.card-text').text('CUIL: ' + cuil )
+            debugger;
+            if(imagen != null)
+            {
+                $('#imagepreview').attr('src', imagen);
+            }else{
+                $('#imagepreview').attr('src', 'images/perfil.jpg');
+            }
     // modal.find('.modal-body input').val(recipient)
     });
 
@@ -107,12 +115,12 @@
                                 },
                         customize: function ( win ) {
                             debugger;
-                            $(win.document.body)
-                            .find('table')
-                            .addClass( 'compact' )
-                            .css( 'font-size', '9pt' )
-                            .attr('align', 'center')
-                            .css('width', '100%');
+                            $(win.content)
+                                .find('table')
+                                .addClass( 'compact' )
+                                .css( 'font-size', '9pt' )
+                                .attr('align', 'center')
+                                .css('width', '100%');
                           },
                     }
                 ],
@@ -123,7 +131,7 @@
           url: "{{ url('/api/contratistas-filtrados') }}",
           type: 'GET',
           data: function (d) {
-              debugger;
+             // debugger;
              d.localidad_id = $('#localidad_id').val();
              d.rubro_id = $('#rubro_id').val();
           }
@@ -138,7 +146,7 @@
                     "data": null,
                     "render": function ( data, type, full, meta ) {
                         console.log(data.apellido);
-                    return "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-nombrecompleto='"+data.apellido+" "+data.nombre+"' data-cuil='"+data.cuil+"' data-telefono='"+data.telefonol+"'>Datos</button>";}
+                    return "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-nombrecompleto='"+data.apellido+" "+data.nombre+"' data-cuil='"+data.cuil+"' data-telefono='"+data.telefonol+"' data-imagen='"+data.imagen+"'><i class='fas fa-address-card 5x'></i></button>";}
                   }
                ],
         "lengthMenu": [[ 50, -1], [50, "All"]]

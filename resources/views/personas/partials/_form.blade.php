@@ -1,8 +1,6 @@
-{!! csrf_field() !!}
-
 <div class="panel panel-default">
 
-
+  <input type="hidden" value="{{ auth()->user()->id }}"  name="user_id" id="user_id" >
   <h4>Datos personales</h4>
   <hr />
   <div class="row">
@@ -132,11 +130,22 @@
     </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
             <div class="form-group">
                 <label class="control-label" for="nombre">Se destaca en:</label>
                 <div class="controls">
                   <textarea class="form-control" id="se_destaca" name="se_destaca" >{{ old('se_destaca', $persona->se_destaca) }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="nombre">Imagen de perfil:</label>
+                <div class="controls">
+                 {{ Form::file('file', ['accept' => 'image/*']) }}
+                 @error('file')
+                    <small class="text-danger" >{{ $message }}</small>
+                 @enderror
                 </div>
             </div>
         </div>

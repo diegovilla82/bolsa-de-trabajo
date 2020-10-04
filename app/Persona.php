@@ -12,7 +12,7 @@ class Persona extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre', 'email', 'apellido','telefono','activo','cuil','localidad_id','profesion_id', 'profesional', 'matricula', 'matriculado', 'se_destaca', 'facebook', 'instegram'
+        'nombre', 'email', 'apellido','telefono','activo','cuil','localidad_id','profesion_id', 'profesional', 'matricula', 'matriculado', 'se_destaca', 'facebook', 'instegram', 'user_id', 'imagen'
     ];
 
     public function rubros()

@@ -10,7 +10,8 @@
       </div>
       <div class="modal-body">
         <div class="card mx-auto" style="width: 18rem;">
-            <img src="images/perfil.jpg" class="card-img-top" alt="...">
+
+            <img id="imagepreview" src="images/perfil.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"></h5>
                 <p class="card-text"></p>

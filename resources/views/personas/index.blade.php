@@ -69,7 +69,7 @@
    {
      "data": null,
      "render": function ( data, type, full, meta ) {
-       var str = "{{ URL::to('personas/ID/edit') }}";
+       var str = "{{ URL::to('admin/personas/ID/edit') }}";
        var res = str.replace("ID", data.id);
       return "<a  href='"+res+"' class='btn btn-info btn-xs' width='30px' ><i class='fa fa-edit'></i> Editar</a>";
     }

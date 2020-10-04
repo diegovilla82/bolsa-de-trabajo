@@ -1,15 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Persona;
 use Illuminate\Http\Request;
 use App\Rubro;
 use App\Localidad;
 use App\Profesion;
+use Illuminate\Support\Facades\Storage;
 
 class PersonaController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
      /**
      * Display a listing of the resource.
      *
@@ -50,13 +60,21 @@ class PersonaController extends Controller
 
         $persona = Persona::create($request->all());
 
+        $request->validate([
+            'file' => 'image|max:2048'
+        ]);
 
-        // if($request->file('file'))
-        // {
-        //     $path = Storage::disk('public')->put('image', $request->file('file'));
+        if($request->file('file'))
+        {
+            //$path = Storage::disk('public')->put('image', $request->file('file'));
+            $imagenes = $request->file('file')->store('public/imagenes');
 
-        //     $post->fill(['file' => asset($path)])->save();
-        // }
+            $url = Storage::url($imagenes);
+
+            //$persona->fill(['imagen' => asset($path)])->save();
+            $persona->fill(['imagen' => asset($url)])->save();
+        }
+
         $persona->activo = 1;
 
         if($persona->profesion_id != null)
@@ -130,12 +148,17 @@ class PersonaController extends Controller
 
         $persona->fill($request->all())->save();
 
-        // if($request->file('file'))
-        // {
-        //     $path = Storage::disk('public')->put('image', $request->file('file'));
+        if($request->file('file'))
+        {
+            //$path = Storage::disk('public')->put('image', $request->file('file'));
+            $imagenes = $request->file('file')->store('public/imagenes');
 
-        //     $post->fill(['file' => asset($path)])->save();
-        // }
+            $url = Storage::url($imagenes);
+
+            //$persona->fill(['imagen' => asset($path)])->save();
+            $persona->fill(['imagen' => $url])->save();
+        }
+
         if($persona->profesion_id != null)
         {
             $persona->profesional = 1;

@@ -18,7 +18,7 @@
 
                             <div class="card mb-5">
                             <div class="card-header">
-                                <h4> <i class='fa fa-list'></i> Lista de contratistas y profesionales  <a href="{{ route('personas.create') }}" class="btn btn-sm btn-primary float-right"><i class='fa fa-plus'></i>  Persona</a></h4>
+                                <h4> <i class='fa fa-list'></i> Listado de contratistas  <a href="{{ route('personas.create') }}" class="btn btn-sm btn-primary float-right"><i class='fa fa-plus'></i>  Contratista</a></h4>
 
                             </div>
                                 <div class="card-body">
@@ -71,7 +71,8 @@
      "render": function ( data, type, full, meta ) {
        var str = "{{ URL::to('personas/ID/edit') }}";
        var res = str.replace("ID", data.id);
-      return "<a  href='"+res+"' class='btn btn-info btn-xs' width='30px' ><i class='fa fa-edit'></i> Editar</a>";}
+      return "<a  href='"+res+"' class='btn btn-info btn-xs' width='30px' ><i class='fa fa-edit'></i> Editar</a>";
+    }
              }
    ],
    "lengthMenu": [[ 25, -1], [ 10, 25, "TODOS"]],

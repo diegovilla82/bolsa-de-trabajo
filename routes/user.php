@@ -10,19 +10,19 @@ Route::middleware(['auth'])->group(function(){
     //Route::get('/users','UserController@index')->middleware('permission:users.index')->name('users.index');
 
     Route::post('/users/store', 'UserController@store')
-    ->middleware('has.permission:users.store')
+    ->middleware('can:users.store')
     ->name('users.store');
 
      Route::get('/users/create', 'UserController@create')
-     ->middleware('has.permission:users.create')
+     ->middleware('can:users.create')
      ->name('users.create');
 
      Route::put('/users/{users}', 'UserController@update')
-     ->middleware('has.permission:users.update')
+     ->middleware('can:users.update')
      ->name('users.update');
 
      Route::get('/users/{users}', 'UserController@show')
-     ->middleware('has.permission:users.show')
+     ->middleware('can:users.show')
      ->name('users.show');
 
      Route::delete('/users/{users}', 'UserController@destroy')
@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function(){
      ->name('users.destroy');
 
      Route::get('users/{users}/edit', 'UserController@edit')
-     ->middleware('has.permission:users.edit')
+     ->middleware('can:users.edit')
      ->name('users.edit');
 
 

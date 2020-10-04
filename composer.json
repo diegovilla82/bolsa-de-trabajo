@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
-    "type": "project",
+    "name"       : "laravel/laravel",
+    "type"       : "project",
     "description": "The Laravel Framework.",
-    "keywords": [
+    "keywords"   : [
         "framework",
         "laravel"
     ],
@@ -13,20 +13,21 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0",
-        "laravelcollective/html": "^6.1"
+        "laravelcollective/html": "^6.1",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
-        "facade/ignition": "^1.4",
-        "fzaninotto/faker": "^1.9.1",
-        "laravel/ui": "^1.0",
-        "mockery/mockery": "^1.0",
+        "facade/ignition"     : "^1.4",
+        "fzaninotto/faker"    : "^1.9.1",
+        "laravel/ui"          : "^1.0",
+        "mockery/mockery"     : "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit"     : "^8.0"
     },
     "config": {
         "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
+        "preferred-install"  : "dist",
+        "sort-packages"      : true
     },
     "extra": {
         "laravel": {
@@ -48,8 +49,8 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "scripts": {
+    "prefer-stable"    : true,
+    "scripts"          : {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

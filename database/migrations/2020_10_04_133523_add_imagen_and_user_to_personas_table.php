@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddImagenToPersonasTable extends Migration
+class AddImagenAndUserToPersonasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddImagenToPersonasTable extends Migration
     public function up()
     {
         Schema::table('personas', function (Blueprint $table) {
-            //
+            $table->string('imagen')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

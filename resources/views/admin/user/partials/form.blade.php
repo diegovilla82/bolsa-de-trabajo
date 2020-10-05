@@ -2,18 +2,64 @@
 <ul class="list-group">
 
   <li class="list-group-item"><div class="form-group">
-    <label for="exampleInputEmail1">Name</label>
-    {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }} 
-  </div></li>
-  
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    @guest
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+                        @endguest
+    </li>
   <li class="list-group-item">
     <div class="form-group">
       {{ Form::label('roles', 'Roles') }}
       <ul>
         @foreach($roles as $role)
-        
+
         <li>
-        <label class="ml-2"> 
+        <label class="ml-2">
           {{ Form::checkbox('roles[]', $role->id) }} {{ $role->name }}
         </label>
         </li>
@@ -23,44 +69,3 @@
 </li>
 
 </ul>
-
-@section('scripts')
-<script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" ></script>
-<script>
-    function convertToSlug(str)
-{
-    str = str.replace(/^\s+|\s+$/g, ''); // trim
-  str = str.toLowerCase();
-
-  // remove accents, swap ñ for n, etc
-  var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-  var to   = "aaaaaeeeeeiiiiooooouuuunc------";
-  for (var i=0, l=from.length ; i<l ; i++) {
-    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-  }
-
-  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
-
-  return str;
-}
-    $(document).ready(function(){
-       
-        $("#name, #slug").keyup(function(){
-            //alert("The text has been changed.");
-            //debugger;
-            //alert(convertToSlug(this.value))
-            var slug = convertToSlug(this.value);
-            $('#slug').val(slug);
-            });
-    });
-
-    CKEDITOR.config.height = 300;
-    CKEDITOR.config.width = 'auto';
-
-    CKEDITOR.replace('body');
-  //  CKEDITOR.replace('excerpt');
-</script>
-
-@endsection

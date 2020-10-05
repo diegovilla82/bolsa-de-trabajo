@@ -28,7 +28,7 @@
                                 @enderror
                             </div>
                         </div>
-                    @guest
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -50,7 +50,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                        @endguest
+
     </li>
   <li class="list-group-item">
     <div class="form-group">

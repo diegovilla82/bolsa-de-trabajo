@@ -146,7 +146,14 @@ class PersonaController extends Controller
         //-- politica de seguridad, dada de alta en el AuthServiceProvider
         //$this->authorize('pass', $post);
 
-        $persona->fill($request->except(['imagen']))->save();
+       // return $request->all();
+
+        $persona->fill($request->all())->save();
+
+
+        $request->validate([
+            'file' => 'image|max:2048'
+        ]);
 
         if($request->file('file'))
         {
@@ -156,20 +163,12 @@ class PersonaController extends Controller
             $url = Storage::url($imagenes);
 
             //$persona->fill(['imagen' => asset($path)])->save();
-            $persona->fill(['imagen' => $url])->save();
+           // return asset($url);
+            $persona->fill(['imagen' => asset($url)])->save();
+            //return $persona->imagen;
         }
 
-        if($persona->profesion_id != null)
-        {
-            $persona->profesional = 1;
-        }
 
-        if($persona->matricula != null)
-        {
-            $persona->matriculado = 1;
-        }
-
-        $persona->save();
 
         $persona->rubros()->sync($request->get('rubros'));
 

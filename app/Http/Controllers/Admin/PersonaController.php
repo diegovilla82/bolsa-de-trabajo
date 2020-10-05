@@ -146,7 +146,7 @@ class PersonaController extends Controller
         //-- politica de seguridad, dada de alta en el AuthServiceProvider
         //$this->authorize('pass', $post);
 
-        $persona->fill($request->all())->save();
+        $persona->fill($request->except(['imagen']))->save();
 
         if($request->file('file'))
         {

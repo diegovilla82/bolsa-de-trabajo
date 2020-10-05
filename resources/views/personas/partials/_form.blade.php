@@ -154,8 +154,9 @@
   <hr />
   <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
           <button type="submit" class="btn btn-primary btn-lg btn-block  mt-3">
-              <i class="fa fa-{{ $icon }}"></i> {{ $buttonText }}
+              <i class="far fa-{{ $icon }}"></i> {{ $buttonText }}
             </button>
       </div>
   </div>

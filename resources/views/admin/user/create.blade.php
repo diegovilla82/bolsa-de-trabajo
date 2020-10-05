@@ -9,7 +9,7 @@
         <h5 class="card-title">Crear Usuario</h5>
             {!! Form::open(['route' => 'users.store', 'method'=>'posts', 'files' => true]) !!}
                 @include('admin.user.partials.form', [ 'user'=> new App\User])
-                {{ Form::submit('Crear', ['class' => 'btn btn-primary btn-block mt-3'])}}
+                 {{ Form::button('<i class="far fa-save"></i> GUARDAR', ['type' => 'submit', 'class' => 'btn btn-primary  btn-block mt-3'] )  }}
             {!! Form::close() !!}
 
         </div>

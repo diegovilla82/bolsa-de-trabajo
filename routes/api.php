@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Persona;
 use Illuminate\Support\Facades\DB;
+use Caffeinated\Shinobi\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,12 @@ Route::get('contratistas-filtrados', function(){
     //return $persona;
 
     return datatables()->of($personas)->make(true);
+});
+
+Route::get('lista-de-usuarios', function(){
+    return datatables()->of(App\User::all())->make(true);
+});
+
+Route::get('lista-de-roles', function(){
+    return datatables()->of(Role::all())->make(true);
 });

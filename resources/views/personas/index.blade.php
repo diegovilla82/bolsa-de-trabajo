@@ -1,9 +1,5 @@
 @extends('layouts.app')
-@section('styles')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-<link href="{{ url('assets/nprogress/nprogress.css') }}" rel="stylesheet">
-<link href="{{ url('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-@stop
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -22,7 +18,7 @@
 
                             </div>
                                 <div class="card-body">
-                                     <table id="table" class="table" cellspacing="0" width="100%"></table>
+                                     <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%"></table>
                                 </div>
                             </div>
 
@@ -33,8 +29,6 @@
 </div>
 @endsection
 @section('scripts')
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" ></script>
 
 <script type="text/javascript">
 
@@ -47,19 +41,19 @@
    "columns": [
    {"data":"id","visible": false,'title':'ID' },
    {"data":"activo","visible": false,'title':'activo'},
-   {
-    "data": null,
-    "title":"Activo",
-    "visible": true,
-    "render": function ( data, type, full, meta ) {
-        var vin = data.activo;
-        if(vin === 0){
-        return '<button type="button" class="btn btn-round btn-warning"></button>';
-          }else {
-              return '<button type="button" class="btn btn-round btn-info"></button>';
-          }
-        }
-   },
+   //{
+   // "data": null,
+   // "title":"Activo",
+   // "visible": true,
+   // "render": function ( data, type, full, meta ) {
+   //     var vin = data.activo;
+   //     if(vin === 0){
+   //     return '<button type="button" class="btn btn-round btn-warning"></button>';
+   //       }else {
+   //           return '<button type="button" class="btn btn-round btn-info"></button>';
+   //       }
+   //     }
+   //},
    {"data":"localidad","visible": true,'title':'Localidad'},
    {"data":"apellido","visible": true,'title':'Apellido.' },
    {"data":"nombre","visible": true,'title':'Nombre' },

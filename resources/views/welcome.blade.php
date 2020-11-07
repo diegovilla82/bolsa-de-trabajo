@@ -84,6 +84,8 @@
             debugger;
             if(imagen != null)
             {
+                 //var str = "{{ asset('ID') }}";
+                //var res = str.replace("ID", imagen);
                 $('#imagepreview').attr('src', imagen);
             }else{
                 $('#imagepreview').attr('src', 'images/perfil.jpg');
